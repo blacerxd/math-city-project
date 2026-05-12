@@ -1,0 +1,10 @@
+{{define "title"}}Главная | Мой сайт{{end}}
+{{define "content"}}
+<section class="hero">
+    <h1>Добро пожаловать</h1>
+    <!-- Обратите внимание: пути к статике всегда от корня -->
+    <img src="/static/images/hero.jpg" alt="Главное фото" loading="lazy" width="800" height="450">
+    <p>Многостраничный сайт на Go</p>
+    <a href="/about" class="btn">О нас</a>
+</section>
+{{end}}
