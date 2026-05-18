@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Знаменитые люди Томска</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/100.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/200.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/300.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/500.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/600.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/700.css">
+<link rel="stylesheet" href="../css/celebities.css">
+</head>
+<body>
+
+<header class="header">
+  <span class="header-logo">Томск</span>
+  <ul class="header-nav">
+    <li><a href="../html/main.html">О городе</a></li>
+    <li><a href="../html/celebrites.html">Знаменитости</a></li>
+    <li><a href="../html/place.html">Достопримечательности</a></li>
+  </ul>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+    <a href="../html/main.html"О городе</a>
+    <a href="../html/celebrites.html">Знаменитости</a>
+    <a href="../html/place.html">Достопримечательности</a>
+</div>
+
+<main class="page-content">
+  <div class="page-title-section">
+    <h1 class="page-title">Знаменитые люди <strong>Томска</strong></h1>
+    <p class="page-subtitle">Писатели, учёные и художники, чьи жизнь и творчество связаны с городом на Томи.</p>
+  </div>
+
+  <div class="search-section">
+    <div class="search-wrapper">
+      <svg class="search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" class="search-input" id="searchInput" placeholder="Поиск по имени или описанию...">
+      <button class="search-clear" id="searchClear" aria-label="Очистить">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="filter-tabs" id="filterTabs">
+    <button class="filter-tab active" data-filter="all">Все <span class="tab-count" id="countAll">8</span></button>
+    <button class="filter-tab" data-filter="writer">Писатели <span class="tab-count" id="countWriter">0</span></button>
+    <button class="filter-tab" data-filter="scientist">Учёные <span class="tab-count" id="countScientist">0</span></button>
+    <button class="filter-tab" data-filter="artist">Художники <span class="tab-count" id="countArtist">0</span></button>
+  </div>
+
+  <div class="results-count" id="resultsCount">Показано <span>8</span> персон</div>
+
+  <div class="cards-grid" id="cardsGrid">
+
+    <a href="#" class="card" data-category="writer" data-name="Антон Павлович Чехов" data-desc="Великий русский писатель, посетивший Томск в 1890 году" data-link="">
+      <div class="card-image-wrapper">
+        <img class="card-image" src="../images/chechov.png" alt="Антон Павлович Чехов">
+        <div class="card-image-overlay"></div>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">Писатель</div>
+        <h3 class="card-name">Антон Павлович Чехов</h3>
+        <p class="card-description">Великий русский писатель, посетивший Томск в 1890 году.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card" data-category="director" data-name="Николай Робертович Эрдман" data-desc="Автор «Мандата» и «Сказок Пушкина», родился в Томске" data-link="">
+      <div class="card-image-wrapper">
+        <img class="card-image" src="../images/erdman.png" alt="Николай Робертович Эрдман">
+        <div class="card-image-overlay"></div>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">Драматург</div>
+        <h3 class="card-name">Николай Робертович Эрдман</h3>
+        <p class="card-description">Автор «Мандата» и «Сказок Пушкина», родился в Томске.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card" data-category="writer" data-name="Александр Николаевич Радищев" data-desc="Автор «Путешествия из Петербурга в Москву», ссыльный в Сибирь" data-link="">
+      <div class="card-image-wrapper">
+        <img class="card-image" src="../images/radishev.png" alt="Александр Николаевич Радищев">
+        <div class="card-image-overlay"></div>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">Писатель, мыслитель</div>
+        <h3 class="card-name">Александр Николаевич Радищев</h3>
+        <p class="card-description">Автор «Путешествия из Петербурга в Москву», ссыльный в Сибирь.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card" data-category="scientist" data-name="Николай Ильич Камов" data-desc="Создатель первого в мире синхрофазотрона, уроженец Томска" data-link="">
+      <div class="card-image-wrapper">
+        <img class="card-image" src="../images/kamov.png" alt="Николай Ильич Камов">
+        <div class="card-image-overlay"></div>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">Конструктор</div>
+        <h3 class="card-name">Николай Ильич Камов</h3>
+        <p class="card-description">Создатель первого в мире синхрофазотрона, уроженец Томска.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card" data-category="scientist" data-name="Владимир Иванович Вернадский" data-desc="Основоатель геохимии, учился в Томской гимназии" data-link="">
+      <div class="card-image-wrapper">
+        <img class="card-image" src="../images/vernadskii.png" alt="Владимир Иванович Вернадский">
+        <div class="card-image-overlay"></div>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">Учёный</div>
+        <h3 class="card-name">Владимир Иванович Вернадский</h3>
+        <p class="card-description">Основоатель геохимии, учился в Томской гимназии.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card" data-category="scientist" data-name="Михаил Александрович Бакунин" data-desc="Революционер и философ, служил в Томском отделении корпуса" data-link="">
+      <div class="card-image-wrapper">
+        <img class="card-image" src="../images/bakunin.png" alt="Михаил Александрович Бакунин">
+        <div class="card-image-overlay"></div>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">Философ</div>
+        <h3 class="card-name">Михаил Александрович Бакунин</h3>
+        <p class="card-description">Революционер и философ, служил в Томском отделении корпуса.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card" data-category="artist" data-name="Иван Иванович Шишкин" data-desc="Мастер пейзажа, связанный с томским краем" data-link="">
+      <div class="card-image-wrapper">
+        <img class="card-image" src="../images/shishkin.png" alt="Иван Иванович Шишкин">
+        <div class="card-image-overlay"></div>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">Художник</div>
+        <h3 class="card-name">Иван Иванович Шишкин</h3>
+        <p class="card-description">Мастер пейзажа, связанный с томским краем.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card" data-category="artist" data-name="Николай Алексеевич Яковлев" data-desc="Томский живописец, мастер сибирского пейзажа" data-link="">
+      <div class="card-image-wrapper">
+        <img class="card-image" src="../images/jakovlev.png" alt="Николай Алексеевич Яковлев">
+        <div class="card-image-overlay"></div>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">Художник</div>
+        <h3 class="card-name">Николай Алексеевич Яковлев</h3>
+        <p class="card-description">Томский живописец, мастер сибирского пейзажа.</p>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="no-results" id="noResults">
+    <svg class="no-results-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+    <h3>Ничего не найдено</h3>
+    <p>Попробуйте изменить параметры поиска</p>
+  </div>
+</main>
+
+<footer class="footer">
+  <p>© 2025 Сайт-визитка города Томска</p>
+</footer>
+
+<script src="../javascript/celebrities.js"></script>
+
+</body>
+</html>
+
