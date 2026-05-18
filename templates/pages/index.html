@@ -1,853 +1,387 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Томск - Город знаний и инноваций</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            color: #333;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes scrollInfinite {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .animate-on-scroll.animated {
-            opacity: 1;
-        }
-
-        .animate-fade-up.animated {
-            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        .animate-fade.animated {
-            animation: fadeIn 1s ease forwards;
-        }
-
-        .animate-slide-left.animated {
-            animation: slideInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        .animate-slide-right.animated {
-            animation: slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        .animate-scale.animated {
-            animation: scaleIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        /* Stagger delays */
-        .delay-100 { animation-delay: 100ms; }
-        .delay-200 { animation-delay: 200ms; }
-        .delay-300 { animation-delay: 300ms; }
-        .delay-400 { animation-delay: 400ms; }
-        .delay-500 { animation-delay: 500ms; }
-
-        /* Header */
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
-            transition: all 0.3s ease;
-        }
-
-        .header.scrolled {
-            background: rgba(0,0,0,0.9);
-            backdrop-filter: blur(10px);
-            padding: 15px 40px;
-        }
-
-        .logo {
-            color: white;
-            font-size: 20px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .logo::before {
-            content: "⊕";
-            font-size: 24px;
-        }
-
-        .nav {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            opacity: 0.9;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: white;
-            transition: width 0.3s ease;
-        }
-
-        .nav a:hover::after {
-            width: 100%;
-        }
-
-        .nav a:hover {
-            opacity: 1;
-            transform: translateY(-2px);
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            height: 100vh;
-            background: url('../photos/tomsk_panorama.jpg') center/cover;
-            display: flex;
-            align-items: center;
-            padding: 0 40px;
-            overflow: hidden;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.8) 100%);
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 72px;
-            font-weight: 300;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
-        }
-
-        .hero-subtitle {
-            font-size: 22px;
-            opacity: 0.95;
-            font-weight: 300;
-            max-width: 650px;
-            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both;
-        }
-
-        /* Stats Bar */
-        .stats {
-            background: #1a1a1a;
-            color: white;
-            padding: 50px 40px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-item {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .stat-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .stat-item h3 {
-            font-size: 42px;
-            font-weight: 300;
-            margin-bottom: 8px;
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover h3 {
-            transform: scale(1.1);
-        }
-
-        .stat-item p {
-            font-size: 16px;
-            opacity: 0.8;
-            font-weight: 300;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* About Section - FULL WIDTH */
-        .about {
-            padding: 100px 0;
-            background: #f8f8f8;
-            width: 100%;
-        }
-
-        .about-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 60px;
-        }
-
-        .about-label {
-            font-size: 13px;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-        }
-
-        .about h2 {
-            font-size: 56px;
-            font-weight: 400;
-            margin-bottom: 60px;
-            line-height: 1.15;
-        }
-
-        .about h2 .italic {
-            font-style: italic;
-            color: #999;
-            font-weight: 300;
-            display: block;
-        }
-
-        .about-body {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 60px;
-            align-items: start;
-        }
-
-        .about-text-col {
-            font-size: 26px;
-            line-height: 1.7;
-            color: #999;
-        }
-
-        .about-image-col {
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .about-image {
-            text-align: right;
-        }
-
-        .about-image img {
-            width: 100%;
-            max-width: 450px;
-            height: auto;
-            display: block;
-            margin-left: auto;
-            margin-bottom: 12px;
-        }
-
-        .about-image figcaption {
-            font-size: 13px;
-            color: #999;
-            margin-left: auto;
-            display: inline-block;
-        }
-
-        /* Scrolling Banner */
-        .scrolling-banner {
-            background: #1a1a1a;
-            overflow: hidden;
-            padding: 18px 0;
-        }
-
-        .scrolling-track {
-            display: inline-flex;
-            animation: scrollInfinite 25s linear infinite;
-            will-change: transform;
-        }
-
-        .scrolling-text {
-            display: inline-flex;
-            flex-shrink: 0;
-            color: #fff;
-            font-size: 18px;
-            font-weight: 300;
-            letter-spacing: 3px;
-            white-space: nowrap;
-            padding-right: 50px;
-        }
-
-        /* Places Section */
-        .places {
-            padding: 100px 40px;
-            background: #f8f8f8;
-        }
-
-        .places-container {
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-
-        .places-label {
-            font-size: 12px;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            opacity: 0;
-            transition: all 0.6s ease;
-        }
-
-        .places-label.visible {
-            opacity: 1;
-        }
-
-        .places h2 {
-            font-size: 52px;
-            font-weight: 300;
-            margin-bottom: 50px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .places h2.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .places h2 span {
-            color: #999;
-        }
-
-        .places-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-        }
-
-        .place-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-        }
-
-        .place-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .place-card:first-child {
-            grid-column: 1 / -1;
-            height: 550px;
-        }
-
-        .place-card:not(:first-child) {
-            height: 420px;
-        }
-
-        .place-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .place-card:hover img {
-            transform: scale(1.08);
-        }
-
-        .place-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 50%;
-            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .place-card:hover::after {
-            opacity: 1;
-        }
-
-        .place-card-overlay {
-            position: absolute;
-            bottom: 30px;
-            left: 30px;
-            right: 30px;
-            color: white;
-            z-index: 2;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.4s ease;
-        }
-
-        .place-card:hover .place-card-overlay {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .place-card-overlay h3 {
-            font-size: 24px;
-            font-weight: 400;
-        }
-
-        /* Footer */
-        .footer {
-            background: #1a1a1a;
-            color: white;
-            padding: 40px;
-            font-size: 14px;
-            opacity: 0.8;
-            text-align: center;
-            transition: opacity 0.3s ease;
-        }
-
-        .footer:hover {
-            opacity: 1;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .about-container {
-                padding: 0 40px;
-            }
-
-            .about-body {
-                grid-template-columns: 1fr 1fr;
-                gap: 40px;
-            }
-
-            .about-image-col {
-                grid-column: 1 / -1;
-                justify-content: center;
-            }
-
-            .about-image {
-                text-align: center;
-            }
-
-            .about-image img {
-                max-width: 400px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                padding: 0 20px;
-            }
-
-            .hero h1 {
-                font-size: 42px;
-            }
-
-            .hero-subtitle {
-                font-size: 18px;
-            }
-
-            .about {
-                padding: 60px 0;
-            }
-
-            .about-container {
-                padding: 0 20px;
-            }
-
-            .about h2 {
-                font-size: 32px;
-                margin-bottom: 40px;
-            }
-
-            .about-body {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .about-text-col {
-                font-size: 15px;
-            }
-
-            .about-image img {
-                max-width: 100%;
-            }
-
-            .stats {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                padding: 40px 20px;
-            }
-
-            .places {
-                padding: 60px 20px;
-            }
-
-            .places h2 {
-                font-size: 32px;
-            }
-
-            .places-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .place-card:first-child {
-                grid-column: auto;
-                height: 300px;
-            }
-
-            .place-card:not(:first-child) {
-                height: 280px;
-            }
-
-            .header {
-                padding: 15px 20px;
-            }
-
-            .nav {
-                gap: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 32px;
-            }
-
-            .about h2 {
-                font-size: 28px;
-            }
-
-            .scrolling-text {
-                font-size: 14px;
-                letter-spacing: 2px;
-            }
-        }
-
-        /* Smooth scroll behavior */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Loading animation */
-        .page-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        .page-loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #1a1a1a;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Город знаний и инноваций — Томск</title>
+<link rel="stylesheet" href="../../static/css/main.css">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/100.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/200.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/300.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/500.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/600.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/700.css">
 </head>
 <body>
-    <!-- Page Loader -->
-    <div class="page-loader" id="pageLoader">
-        <div class="loader-spinner"></div>
+
+<header class="header">
+  <div class="header-bg" id="headerBg"></div>
+  <nav class="header-nav">
+    <span class="header-nav-logo">Томск</span>
+    <ul class="header-nav-links">
+      <li><a href="index.html">О городе</a></li>
+      <li><a href="celebrites.html">Знаменитости</a></li>
+      <li><a href="place.html">Достопримечательности</a></li>
+    </ul>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="mobile-nav-link">О городе</a>
+    <a href="celebrites.html" class="mobile-nav-link">Знаменитости</a>
+    <a href="place.html" class="mobile-nav-link">Достопримечательности</a>
+  </div>
+  <div class="header-content">
+    <h1 class="header-title">Город<br><strong>знаний</strong><br>и инноваций</h1>
+    <p class="header-subtitle">Сибирская столица науки, студенческой энергии и технологий будущего.</p>
+  </div>
+  <div class="header-scroll-hint">
+    <span></span>
+  </div>
+</header>
+
+<div class="stats-bar" id="statsBar">
+  <div class="stats-bar-item">
+    <div class="stats-bar-number" data-target="577">0</div>
+    <div class="stats-bar-label">тыс. жителей</div>
+  </div>
+  <div class="stats-bar-item">
+    <div class="stats-bar-number" data-target="1604">0</div>
+    <div class="stats-bar-label">год основания</div>
+  </div>
+  <div class="stats-bar-item">
+    <div class="stats-bar-number" data-target="6">0</div>
+    <div class="stats-bar-label">вузов</div>
+  </div>
+</div>
+
+<section class="section top-section fade-in" id="about">
+  <div class="top-section-header">
+    <p class="top-section-label">Начало</p>
+    <h2 class="top-section-title">Место, где<br><em>начинается</em><br>Сибирь</h2>
+  </div>
+  <div class="top-section-body">
+    <div class="top-section-text fade-in-left">
+      <p>Томск стоит на правом берегу Томи, в 60 километрах от впадения её в Обь. Город вырос из острога, заложенного по указу Бориса Годунова, и за четыре столетия превратился в интеллектуальную столицу Сибири.</p>
+    </div>
+    <div class="top-section-text fade-in-right">
+      <p>Здесь каждый пятый — студент. Здесь деревянные дома XIX века с резными наличниками соседствуют с современными IT-кластерами. Здесь чувствуется дыхание большой истории.</p>
+    </div>
+    <div class="top-section-image scale-in">
+      <img src="../images/Monument400.png" alt="Памятник 400 лет Томску" onclick="openModal(this, 'Памятник 400 лет Томску')">
+      <p class="top-section-image-caption">Памятник 400 лет Томску</p>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span>НАУКА</span><span>КУЛЬТУРА</span><span>ИСТОРИЯ</span><span>СТУДЕНТЫ</span><span>ТОМСК</span><span>НАУКА</span><span>КУЛЬТУРА</span><span>ИСТОРИЯ</span><span>СТУДЕНТЫ</span><span>ТОМСК</span>
+    <span>НАУКА</span><span>КУЛЬТУРА</span><span>ИСТОРИЯ</span><span>СТУДЕНТЫ</span><span>ТОМСК</span><span>НАУКА</span><span>КУЛЬТУРА</span><span>ИСТОРИЯ</span><span>СТУДЕНТЫ</span><span>ТОМСК</span>
+  </div>
+</div>
+
+<section class="section-full fade-in">
+  <div class="section-inner">
+    <p class="section-question">Чем знаменит Томск?</p>
+    <h2 class="section-title">Статус<br>«Сибирских Афин»</h2>
+    <div class="section-description">
+      <p>Томск исторически является главным образовательным центром азиатской части России.</p>
     </div>
 
-    <!-- Header -->
-    <header class="header" id="header">
-        <div class="logo">Томск</div>
-        <nav class="nav">
-            <a href="#places">МЕСТА</a>
-            <a href="#about">О ГОРОДЕ</a>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>Город знаний<br>и инноваций</h1>
-            <p class="hero-subtitle">Сибирская столица науки, студенческой энергии и технологий будущего.</p>
-        </div>
-    </section>
-
-    <!-- Stats Bar -->
-    <section class="stats" id="stats">
-        <div class="stat-item">
-            <h3>577 тыс.</h3>
-            <p>жителей</p>
-        </div>
-        <div class="stat-item">
-            <h3>1604</h3>
-            <p>год основания</p>
-        </div>
-        <div class="stat-item">
-            <h3>6</h3>
-            <p>вузов</p>
-        </div>
-    </section>
-
-    <!-- About Section - FULL WIDTH -->
-    <section class="about" id="about">
-        <div class="about-container">
-            <div class="about-label">О ГОРОДЕ</div>
-            <h2>Место, где <span class="italic">начинается</span> Сибирь</h2>
-            <div class="about-body">
-                <div class="about-text-col">
-                    <p>Томск стоит на правом берегу Томи, в 60 километрах от впадения её в Обь. Город вырос из острога, заложенного по указу Бориса Годунова, и за четыре столетия превратился в интеллектуальную столицу Сибири.</p>
-                </div>
-                <div class="about-text-col">
-                    <p>Здесь каждый пятый — студент. Здесь деревянные дома XIX века с резными наличниками соседствуют с современными IT-кластерами. Здесь чувствуется дыхание большой истории.</p>
-                </div>
-                <div class="about-image-col">
-                    <figure class="about-image">
-                        <img src="../photos/coat_of_arms.jpg" alt="Памятник 400 лет Томску">
-                        <figcaption>Памятник 400 лет Томску</figcaption>
-                    </figure>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Scrolling Banner -->
-    <div class="scrolling-banner">
-        <div class="scrolling-track">
-            <div class="scrolling-text">НАУКА · КУЛЬТУРА · ИСТОРИЯ · СТУДЕНТЫ · ТОМСК · НАУКА · КУЛЬТУРА · ИСТОРИЯ · СТУДЕНТЫ · ТОМСК · НАУКА · КУЛЬТУРА · ИСТОРИЯ · СТУДЕНТЫ · ТОМСК · НАУКА · КУЛЬТУРА · ИСТОРИЯ · СТУДЕНТЫ · ТОМСК · </div>
-            <div class="scrolling-text" aria-hidden="true">НАУКА · КУЛЬТУРА · ИСТОРИЯ · СТУДЕНТЫ · ТОМСК · НАУКА · КУЛЬТУРА · ИСТОРИЯ · СТУДЕНТЫ · ТОМСК · НАУКА · КУЛЬТУРА · ИСТОРИЯ · СТУДЕНТЫ · ТОМСК · НАУКА · КУЛЬТУРА · ИСТОРИЯ · СТУДЕНТЫ · ТОМСК · </div>
-        </div>
+    <div class="tabs-container">
+      <div class="tabs-header">
+        <button class="tab-btn active" data-tab="tab-universities">Университеты</button>
+        <button class="tab-btn" data-tab="tab-students">Студенты</button>
+        <button class="tab-btn" data-tab="tab-science">Наука</button>
+      </div>
+      <div class="tab-content active" id="tab-universities">
+        <ul>
+          <li>Здесь открыт первый классический университет за Уралом (ТГУ, 1888 г.).</li>
+          <li>Здесь открыт первый в Азии технический вуз (ТПУ, 1900 г.).</li>
+          <li>Томский государственный университет систем управления и радиоэлектроники (ТУСУР).</li>
+          <li>Сибирский государственный медицинский университет.</li>
+          <li>Томский государственный педагогический университет.</li>
+          <li>Томский государственный архитектурно-строительный университет.</li>
+        </ul>
+      </div>
+      <div class="tab-content" id="tab-students">
+        <p>Томск — один из самых студенческих городов мира. Каждый пятый житель — студент, что создаёт уникальную атмосферу молодости, энергии и постоянного развития.</p>
+        <p>Студенческие городки, библиотеки, научные конференции, фестивали — всё это делает Томск по-настоящему студенческим городом. Ежегодно сюда приезжают тысячи абитуриентов со всей России и из-за рубежа.</p>
+      </div>
+      <div class="tab-content" id="tab-science">
+        <p>Томск является крупным научным центром Сибири. Здесь расположены научно-исследовательские институты, технопарки и особые экономические зоны.</p>
+        <ul>
+          <li>Томский научный центр СО РАН</li>
+          <li>Научный парк ТГУ</li>
+          <li>Особая экономическая зона «Томск»</li>
+          <li>Более 30 научных организаций</li>
+        </ul>
+      </div>
     </div>
 
-    <!-- Places Section -->
-    <section class="places" id="places">
-        <div class="places-container">
-            <div class="places-label">МЕСТА</div>
-            <h2>Что <span>посмотреть?</span></h2>
-            <div class="places-grid">
-                <div class="place-card">
-                    <a href="tsu.html" style="text-decoration: none; color: inherit; display: block; height: 100%;">
-                        <img src="../photos/tsu_building.jpg" alt="Томский государственный университет">
-                        <div class="place-card-overlay">
-                            <h3>Томский государственный университет</h3>
-                        </div>
-                    </a>
-                </div>
-                <div class="place-card">
-                    <a href="church.html" style="text-decoration: none; color: inherit; display: block; height: 100%;">
-                        <img src="../photos/church.jpg" alt="Богоявленский собор">
-                        <div class="place-card-overlay">
-                            <h3>Богоявленский собор</h3>
-                        </div>
-                    </a>
-                </div>
-                <div class="place-card">
-                    <a href="chekhov.html" style="text-decoration: none; color: inherit; display: block; height: 100%;">
-                        <img src="../photos/chekhov_monument.jpg" alt="Памятник Чехову">
-                        <div class="place-card-overlay">
-                            <h3>Памятник А.П. Чехову</h3>
-                        </div>
-                    </a>
-                </div>
-                <div class="place-card">
-                    <a href="theater.html" style="text-decoration: none; color: inherit; display: block; height: 100%;">
-                        <img src="../photos/drama_theater.jpg" alt="Театр драмы">
-                        <div class="place-card-overlay">
-                            <h3>Драматический театр</h3>
-                        </div>
-                    </a>
-                </div>
-                <div class="place-card">
-                    <a href="museum.html" style="text-decoration: none; color: inherit; display: block; height: 100%;">
-                        <img src="../photos/roof_museum.jpg" alt="Крыша мира">
-                        <div class="place-card-overlay">
-                            <h3>Музей «Крыша мира»</h3>
-                        </div>
-                    </a>
-                </div>
-            </div>
+    <div class="image-grid">
+      <div class="image-grid-item scale-in">
+        <img src="../../static/images/TGU1.png" alt="государственный университет (ТГУ, 1888 г.)" onclick="openModal(this, 'государственный университет (ТГУ, 1888 г.)')">
+        <p class="image-grid-caption">государственный университет (ТГУ, 1888 г.)</p>
+      </div>
+      <div class="image-grid-item scale-in stagger-2">
+        <img src="../../static/images/TPU1.png" alt="технический вуз (ТПУ, 1900 г.)" onclick="openModal(this, 'технический вуз (ТПУ, 1900 г.)')">
+        <p class="image-grid-caption">технический вуз (ТПУ, 1900 г.)</p>
+      </div>
+    </div>
+
+    <p class="section-description" style="margin-top: 30px;">
+      Благодаря этому Томск стал магнитом для интеллектуальной элиты страны. Сегодня это один из самых студенческих городов мира: каждый пятый житель — студент. Эта концентрация молодежи и ученых создает неповторимую атмосферу свободы, креативности и постоянного развития.
+    </p>
+  </div>
+</section>
+
+<div class="parallax-divider">
+  <div class="parallax-divider-bg" style="background-image: url('');"></div>
+  <div class="parallax-divider-text">
+    <h3>«Сибирские Афины»</h3>
+    <p>Интеллектуальная столица Сибири</p>
+  </div>
+</div>
+
+<section class="section-full fade-in">
+  <div class="section-inner">
+    <p class="section-question">Чем знаменит Томск?</p>
+    <h2 class="section-title">Мировой бренд<br><em>деревянного</em><br>зодчества</h2>
+    <p class="section-description">
+      Томск известен на весь мир своей сохраненной исторической средой. Это один из немногих крупных городов, где деревянная архитектура не была снесена, а стала визитной карточкой.
+    </p>
+
+    <div class="image-grid">
+      <div class="image-grid-item scale-in">
+        <img src="../../static/images/zod1.png" alt="деревянное зодчество Томска 1" onclick="openModal(this, 'Деревянное зодчество Томска')">
+      </div>
+      <div class="image-grid-item scale-in stagger-2">
+        <img src="../../static/images/zod2.png" alt="деревянное зодчество Томска 2" onclick="openModal(this, 'Деревянное зодчество Томска')">
+      </div>
+    </div>
+
+    <ul class="feature-list">
+      <li>«Томское барокко»: Уникальный стиль резьбы по дереву, сочетающий русские традиции с европейскими мотивами.</li>
+      <li>Город часто называют «музеем под открытым небом» именно из-за тысяч домов с ажурными наличниками, которые создают уникальный визуальный код города.</li>
+    </ul>
+
+    <div class="accordion">
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>Что такое «Томское барокко»?</span>
+          <div class="accordion-icon"></div>
+        </button>
+        <div class="accordion-body">
+          <p>«Томское барокко» — это уникальный архитектурный стиль деревянного зодчества, сложившийся в Томске во второй половине XIX — начале XX века. Он сочетает в себе русские традиции деревянного строительства с элементами европейского барокко: пышные резные наличники, фронтоны сложной формы, колонны и пилястры, выполненные в дереве. Этот стиль делает Томск одним из самых красивых городов России.</p>
         </div>
-    </section>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>Сколько деревянных домов в Томске?</span>
+          <div class="accordion-icon"></div>
+        </button>
+        <div class="accordion-body">
+          <p>В Томске сохранилось более 1 500 деревянных домов, многие из которых являются памятниками архитектуры. Особенно ценны дома с «томской резьбой» — ажурными наличниками, которые покрывают окна сложными узорами. Эти дома создают неповторимую атмосферу города и привлекают тысячи туристов ежегодно.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>Где лучше всего увидеть деревянное зодчество?</span>
+          <div class="accordion-icon"></div>
+        </button>
+        <div class="accordion-body">
+          <p>Лучшие образцы деревянного зодчества можно увидеть на улицах Красноармейская, Бакунина, Обруб, а также в районе Воскресенской горы. Обязательно посетите Дом науки им. Макушина, особняк купца Голованова и дом с драконами — самые известные памятники деревянной архитектуры Томска.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>Проводятся ли экскурсии по деревянному зодчеству?</span>
+          <div class="accordion-icon"></div>
+        </button>
+        <div class="accordion-body">
+          <p>Да, в Томске существует множество пешеходных экскурсий, посвящённых деревянному зодчеству. Экскурсии проводятся как группами, так и индивидуально. Можно заказать аудиогид или воспользоваться мобильным приложением с маршрутами по историческому центру города.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>© 2026 Сайт-визитка города Томска</p>
-    </footer>
+<section class="section-full fade-in" id="gallery">
+  <div class="section-inner">
+    <p class="section-question">Чем знаменит Томск?</p>
+    <h2 class="section-title">Центр высоких<br><em>технологий</em><br>и инноваций</h2>
+    <p class="section-description">
+      Томск — это не только история, но и будущее. Город входит в число лидеров России по развитию IT-сектора, биотехнологий и радиоэлектроники.
+    </p>
 
-    <script>
-        // Page loader
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('pageLoader').classList.add('hidden');
-            }, 500);
-        });
+    <div class="slider-section">
+      <div class="slider-wrapper">
+        <div class="slider-track" id="sliderTrack">
+          <div class="slider-slide">
+            <img src="../../static/images/techno.png" alt="Технопарк Томска 1">
+            <div class="slider-caption">
+              <h3>Технопарк «Томск»</h3>
+              <p>Особая экономическая зона технико-внедренческого типа</p>
+            </div>
+          </div>
+          <div class="slider-slide">
+            <img src="../../static/images/ithub.png" alt="IT-кластер Томска">
+            <div class="slider-caption">
+              <h3>IT-кластер</h3>
+              <p>Более 200 IT-компаний и стартапов</p>
+            </div>
+          </div>
+          <div class="slider-slide">
+            <img src="../../static/images/lab.png" alt="Научные лаборатории">
+            <div class="slider-caption">
+              <h3>Научные лаборатории</h3>
+              <p>Современные исследовательские центры</p>
+            </div>
+          </div>
+          <div class="slider-slide">
+            <img src="../../static/images/tech1.png" alt="Инновационный центр">
+            <div class="slider-caption">
+              <h3>Инновационный центр</h3>
+              <p>Технологии, которые меняют мир</p>
+            </div>
+          </div>
+        </div>
+        <button class="slider-btn slider-btn-prev" onclick="moveSlider(-1)" aria-label="Назад">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button class="slider-btn slider-btn-next" onclick="moveSlider(1)" aria-label="Вперёд">
+          <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"></polyline></svg>
+        </button>
+      </div>
+      <div class="slider-dots" id="sliderDots"></div>
+    </div>
 
-        // Header scroll effect
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+    <ul class="feature-list">
+      <li>Здесь расположена одна из первых в России Особых экономических зон технико-внедренческого типа.</li>
+      <li>Томские ученые и разработчики создают технологии, которые используются во всем мире: от медицинских приборов до космических материалов.</li>
+    </ul>
+  </div>
+</section>
 
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+<section class="counter-section fade-in">
+  <div class="section-inner">
+    <div class="counter-grid">
+      <div class="counter-item">
+        <div class="counter-number"><span class="counter-val" data-target="1500">0</span><span class="counter-suffix">+</span></div>
+        <div class="counter-label">деревянных домов</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-number"><span class="counter-val" data-target="6">0</span></div>
+        <div class="counter-label">университетов</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-number"><span class="counter-val" data-target="130">0</span><span class="counter-suffix"> тыс.</span></div>
+        <div class="counter-label">студентов</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-number"><span class="counter-val" data-target="200">0</span><span class="counter-suffix">+</span></div>
+        <div class="counter-label">IT-компаний</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    entry.target.classList.add('animated');
-                }
-            });
-        }, observerOptions);
+<section class="section-full fade-in">
+  <div class="section-inner">
+    <p class="section-question">Чем знаменит Томск?</p>
+    <h2 class="section-title">Город ссыльных,<br>ставший городом<br>свободных</h2>
+    <p class="section-description">
+      Парадокс томской истории в том, что его расцвет во многом обязан ссылке. В XIX веке сюда отправляли лучших представителей интеллигенции (декабристов, участников польских восстаний, писателей).
+    </p>
+    <div class="image-grid">
+      <div class="image-grid-item scale-in">
+        <img src="../../static/images/old1.png" alt="историческое фото Томска 1" onclick="openModal(this, 'Историческое фото Томска')">
+      </div>
+      <div class="image-grid-item scale-in stagger-2">
+        <img src="../../static/images/old2.png" alt="историческое фото Томска 2" onclick="openModal(this, 'Историческое фото Томска')">
+      </div>
+    </div>
+    <p class="section-description" style="margin-top: 30px;">
+      Вместо того чтобы сломаться, они привезли в Сибирь европейскую культуру, открыли первые библиотеки, театры и школы, заложив фундамент той самой «томской интеллигентности», которой город гордится до сих пор.
+    </p>
+  </div>
+</section>
 
-        // Observe all animated elements
-        document.querySelectorAll('.stat-item, .about-label, .about h2, .about-text p, .about-image, .places-label, .places h2, .place-card').forEach((el) => {
-            observer.observe(el);
-        });
+<section class="contact-section fade-in" id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Свяжитесь<br>с <em>Томском</em></h2>
+        <p>Хотите узнать больше о Томске или планируете визит? Напишите нам, и мы с радостью поможем вам спланировать путешествие в город знаний и инноваций.</p>
+        <ul class="contact-details">
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Томская область, г. Томск</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>+7 (3822) 00-00-00</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>info@tomsk-city.ru</span>
+          </li>
+        </ul>
+      </div>
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="form-group" id="nameGroup">
+          <input type="text" id="nameInput" placeholder=" " required>
+          <label for="nameInput">Ваше имя</label>
+          <div class="error-line"></div>
+          <div class="error-message">Пожалуйста, введите ваше имя</div>
+        </div>
+        <div class="form-group" id="emailGroup">
+          <input type="email" id="emailInput" placeholder=" " required>
+          <label for="emailInput">Email</label>
+          <div class="error-line"></div>
+          <div class="error-message">Введите корректный email</div>
+        </div>
+        <div class="form-group" id="phoneGroup">
+          <input type="tel" id="phoneInput" placeholder=" ">
+          <label for="phoneInput">Телефон (необязательно)</label>
+          <div class="error-line"></div>
+          <div class="error-message">Введите корректный номер телефона</div>
+        </div>
+        <div class="form-group" id="messageGroup">
+          <textarea id="messageInput" rows="4" placeholder=" " required></textarea>
+          <label for="messageInput">Ваше сообщение</label>
+          <div class="error-line"></div>
+          <div class="error-message">Пожалуйста, введите сообщение</div>
+        </div>
+        <button type="submit" class="form-submit-btn" id="submitBtn">Отправить</button>
+        <div class="form-success-msg" id="successMsg">Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.</div>
+      </form>
+    </div>
+  </div>
+</section>
 
-        // Stagger animation for place cards
-        const placeCards = document.querySelectorAll('.place-card');
-        placeCards.forEach((card, index) => {
-            card.style.transitionDelay = `${index * 100}ms`;
-        });
+<footer class="footer">
+  <p>© 2025 Сайт-визитка города Томска</p>
+</footer>
 
-        // Stagger animation for stat items
-        const statItems = document.querySelectorAll('.stat-item');
-        statItems.forEach((item, index) => {
-            item.style.transitionDelay = `${index * 150}ms`;
-        });
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <button class="modal-close" onclick="closeModal(event)" aria-label="Закрыть">
+    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <img id="modalImage" src="" alt="">
+    <div class="modal-caption" id="modalCaption"></div>
+  </div>
+</div>
 
-        // Add hover effect enhancement for place cards
-        document.querySelectorAll('.place-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.zIndex = '10';
-            });
-            card.addEventListener('mouseleave', function() {
-                this.style.zIndex = '1';
-            });
-        });
-    </script>
+<script src="../../static/js/main.js"></script>
 </body>
 </html>
+
