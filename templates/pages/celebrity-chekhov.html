@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Антон Павлович Чехов — Знаменитые люди Томска</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/celebrity-detail.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-logo">Томск</div>
+        <nav>
+            <ul class="header-nav">
+                <li><a href="index.html">О городе</a></li>
+                <li><a href="celebrites.html">Знаменитости</a></li>
+                <li><a href="place.html">Достопримечательности</a></li>
+                <li><a href="#">Экскурсии</a></li>
+                <li><a href="#">Войти</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+    
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html">О городе</a>
+        <a href="celebrites.html">Знаменитости</a>
+        <a href="place.html">Достопримечательности</a>
+        <a href="#">Экскурсии</a>
+        <a href="#">Войти</a>
+    </nav>
+    
+    <main class="page-content">
+        <div class="page-header">
+            <h1 class="page-title">Знаменитые люди <strong>Томска</strong></h1>
+            <p class="page-subtitle">Писатели, учёные и художники, чьи жизнь и творчество связаны с городом на Томи.</p>
+        </div>
+        
+        <div class="celebrity-detail">
+            <div class="celebrity-card">
+                <div class="celebrity-image-wrapper">
+                    <img src="../../static/images/chechov.png" alt="Антон Павлович Чехов" class="celebrity-image">
+                </div>
+                <div class="celebrity-card-body">
+                    <span class="celebrity-category">Писатель</span>
+                    <h2 class="celebrity-name">Антон Павлович Чехов</h2>
+                    <p class="celebrity-short-desc">Великий русский писатель, посетивший Томск в 1890 году.</p>
+                </div>
+            </div>
+            
+            <div class="celebrity-info">
+                <h2 class="celebrity-years">1860–1904</h2>
+                
+                <div class="celebrity-bio">
+                    <p>Антон Павлович Чехов — классик мировой литературы, автор рассказов и пьес, оказавший огромное влияние на театр XX века.</p>
+                    
+                    <p>В 1890 году писатель проезжал через Томск по пути на Сахалин. Город произвёл на него неоднозначное впечатление, о чём он с иронией писал в письмах: «В Томске я обедал у архиерея...»</p>
+                    
+                    <p>Сегодня на набережной Томи установлен один из самых узнаваемых памятников Чехову в России. Скульптура стала символом литературного Томска и любимым местом прогулок горожан.</p>
+                </div>
+                
+                <a href="celebrites.html" class="back-button">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    К списку
+                </a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>© 2025 Сайт-визитка города Томска</p>
+    </footer>
+    
+    <script src="../../static/js/celebrity-detail.js"></script>
+</body>
+</html>

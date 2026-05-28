@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Знаменитые люди Томска</title>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/100.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/200.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/300.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/400.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/500.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/600.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/700.css">
-<link rel="stylesheet" href="../../static/css/celebities.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Знаменитые люди Томска</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/100.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/200.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/300.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/400.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/500.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/600.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.16/700.css">
+  <link rel="stylesheet" href="../../static/css/celebities.css">
 </head>
 <body>
 
@@ -31,9 +31,9 @@
 </header>
 
 <div class="mobile-nav" id="mobileNav">
-    <a href="index.html"О городе</a>
-    <a href="celebrites.html">Знаменитости</a>
-    <a href="place.html">Достопримечательности</a>
+  <a href="index.html">О городе</a>
+  <a href="celebrites.html">Знаменитости</a>
+  <a href="place.html">Достопримечательности</a>
 </div>
 
 <main class="page-content">
@@ -54,16 +54,17 @@
 
   <div class="filter-tabs" id="filterTabs">
     <button class="filter-tab active" data-filter="all">Все <span class="tab-count" id="countAll">8</span></button>
-    <button class="filter-tab" data-filter="writer">Писатели <span class="tab-count" id="countWriter">0</span></button>
-    <button class="filter-tab" data-filter="scientist">Учёные <span class="tab-count" id="countScientist">0</span></button>
-    <button class="filter-tab" data-filter="artist">Художники <span class="tab-count" id="countArtist">0</span></button>
+    <button class="filter-tab" data-filter="writer">Писатели <span class="tab-count" id="countWriter">3</span></button>
+    <button class="filter-tab" data-filter="scientist">Учёные <span class="tab-count" id="countScientist">3</span></button>
+    <button class="filter-tab" data-filter="artist">Художники <span class="tab-count" id="countArtist">2</span></button>
   </div>
 
   <div class="results-count" id="resultsCount">Показано <span>8</span> персон</div>
 
   <div class="cards-grid" id="cardsGrid">
 
-    <a href="#" class="card" data-category="writer" data-name="Антон Павлович Чехов" data-desc="Великий русский писатель, посетивший Томск в 1890 году" data-link="">
+    <!-- Чехов -->
+    <a href="celebrity-chekhov.html" class="card" data-category="writer" data-name="Антон Павлович Чехов" data-desc="Великий русский писатель, посетивший Томск в 1890 году">
       <div class="card-image-wrapper">
         <img class="card-image" src="../../static/images/chechov.png" alt="Антон Павлович Чехов">
         <div class="card-image-overlay"></div>
@@ -78,7 +79,8 @@
       </div>
     </a>
 
-    <a href="#" class="card" data-category="director" data-name="Николай Робертович Эрдман" data-desc="Автор «Мандата» и «Сказок Пушкина», родился в Томске" data-link="">
+    <!-- Эрдман -->
+    <a href="celebrity-erdman.html" class="card" data-category="writer" data-name="Николай Робертович Эрдман" data-desc="Автор «Мандата» и «Сказок Пушкина», родился в Томске">
       <div class="card-image-wrapper">
         <img class="card-image" src="../../static/images/erdman.png" alt="Николай Робертович Эрдман">
         <div class="card-image-overlay"></div>
@@ -93,7 +95,8 @@
       </div>
     </a>
 
-    <a href="#" class="card" data-category="writer" data-name="Александр Николаевич Радищев" data-desc="Автор «Путешествия из Петербурга в Москву», ссыльный в Сибирь" data-link="">
+    <!-- Радищев -->
+    <a href="celebrity-radishchev.html" class="card" data-category="writer" data-name="Александр Николаевич Радищев" data-desc="Автор «Путешествия из Петербурга в Москву», ссыльный в Сибирь">
       <div class="card-image-wrapper">
         <img class="card-image" src="../../static/images/radishev.png" alt="Александр Николаевич Радищев">
         <div class="card-image-overlay"></div>
@@ -108,7 +111,8 @@
       </div>
     </a>
 
-    <a href="#" class="card" data-category="scientist" data-name="Николай Ильич Камов" data-desc="Создатель первого в мире синхрофазотрона, уроженец Томска" data-link="">
+    <!-- Камов -->
+    <a href="celebrity-kamov.html" class="card" data-category="scientist" data-name="Николай Ильич Камов" data-desc="Создатель первого в мире синхрофазотрона, уроженец Томска">
       <div class="card-image-wrapper">
         <img class="card-image" src="../../static/images/kamov.png" alt="Николай Ильич Камов">
         <div class="card-image-overlay"></div>
@@ -123,7 +127,8 @@
       </div>
     </a>
 
-    <a href="#" class="card" data-category="scientist" data-name="Владимир Иванович Вернадский" data-desc="Основоатель геохимии, учился в Томской гимназии" data-link="">
+    <!-- Вернадский -->
+    <a href="celebrity-vernadsky.html" class="card" data-category="scientist" data-name="Владимир Иванович Вернадский" data-desc="Основоположник геохимии, учился в Томской гимназии">
       <div class="card-image-wrapper">
         <img class="card-image" src="../../static/images/vernadskii.png" alt="Владимир Иванович Вернадский">
         <div class="card-image-overlay"></div>
@@ -134,11 +139,12 @@
       <div class="card-body">
         <div class="card-category">Учёный</div>
         <h3 class="card-name">Владимир Иванович Вернадский</h3>
-        <p class="card-description">Основоатель геохимии, учился в Томской гимназии.</p>
+        <p class="card-description">Основоположник геохимии, учился в Томской гимназии.</p>
       </div>
     </a>
 
-    <a href="#" class="card" data-category="scientist" data-name="Михаил Александрович Бакунин" data-desc="Революционер и философ, служил в Томском отделении корпуса" data-link="">
+    <!-- Бакунин -->
+    <a href="celebrity-bakunin.html" class="card" data-category="scientist" data-name="Михаил Александрович Бакунин" data-desc="Революционер и философ, служил в Томском отделении корпуса">
       <div class="card-image-wrapper">
         <img class="card-image" src="../../static/images/bakunin.png" alt="Михаил Александрович Бакунин">
         <div class="card-image-overlay"></div>
@@ -153,7 +159,8 @@
       </div>
     </a>
 
-    <a href="#" class="card" data-category="artist" data-name="Иван Иванович Шишкин" data-desc="Мастер пейзажа, связанный с томским краем" data-link="">
+    <!-- Шишкин -->
+    <a href="celebrity-shishkin.html" class="card" data-category="artist" data-name="Иван Иванович Шишкин" data-desc="Мастер пейзажа, связанный с томским краем">
       <div class="card-image-wrapper">
         <img class="card-image" src="../../static/images/shishkin.png" alt="Иван Иванович Шишкин">
         <div class="card-image-overlay"></div>
@@ -168,7 +175,8 @@
       </div>
     </a>
 
-    <a href="#" class="card" data-category="artist" data-name="Николай Алексеевич Яковлев" data-desc="Томский живописец, мастер сибирского пейзажа" data-link="">
+    <!-- Яковлев -->
+    <a href="celebrity-yakovlev.html" class="card" data-category="artist" data-name="Николай Алексеевич Яковлев" data-desc="Томский живописец, мастер сибирского пейзажа">
       <div class="card-image-wrapper">
         <img class="card-image" src="../../static/images/jakovlev.png" alt="Николай Алексеевич Яковлев">
         <div class="card-image-overlay"></div>
@@ -197,7 +205,5 @@
 </footer>
 
 <script src="../../static/js/celebrities.js"></script>
-
 </body>
 </html>
-

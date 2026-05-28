@@ -1,0 +1,363 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #1a1a1a;
+    background: #f5f4f1;
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* === HEADER === */
+.header {
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 44px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-logo {
+    font-size: 13px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+.header-nav {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+}
+
+.header-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.header-nav a:hover {
+    opacity: 1;
+}
+
+/* === MOBILE MENU === */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 101;
+}
+
+.mobile-menu-btn span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    margin: 5px 0;
+    transition: all 0.3s;
+}
+
+.mobile-menu-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 1000;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.mobile-nav.active {
+    display: flex;
+}
+
+.mobile-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+}
+
+.mobile-nav.active a {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mobile-nav.active a:nth-child(1) { transition-delay: 0.1s; }
+.mobile-nav.active a:nth-child(2) { transition-delay: 0.2s; }
+.mobile-nav.active a:nth-child(3) { transition-delay: 0.3s; }
+
+/* === PAGE CONTENT === */
+.page-content {
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 60px 40px 80px;
+}
+
+.page-header {
+    margin-bottom: 50px;
+}
+
+.page-title {
+    font-size: 42px;
+    font-weight: 300;
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s ease 0.2s forwards;
+}
+
+.page-title strong {
+    font-weight: 700;
+}
+
+.page-subtitle {
+    font-size: 14px;
+    font-weight: 300;
+    color: #888;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fadeUp 0.8s ease 0.4s forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === CELEBRITY DETAIL === */
+.celebrity-detail {
+    display: grid;
+    grid-template-columns: 450px 1fr;
+    gap: 50px;
+    align-items: start;
+}
+
+.celebrity-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s ease 0.6s forwards;
+}
+
+.celebrity-image-wrapper {
+    position: relative;
+    height: 520px;
+    overflow: hidden;
+}
+
+.celebrity-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.celebrity-card:hover .celebrity-image {
+    transform: scale(1.05);
+}
+
+.celebrity-card-body {
+    padding: 24px;
+}
+
+.celebrity-category {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #4a90d9;
+    margin-bottom: 12px;
+}
+
+.celebrity-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.celebrity-short-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: #777;
+    line-height: 1.6;
+}
+
+.celebrity-info {
+    padding: 20px 0;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s ease 0.8s forwards;
+}
+
+.celebrity-years {
+    font-size: 16px;
+    font-weight: 400;
+    color: #666;
+    margin-bottom: 24px;
+}
+
+.celebrity-bio {
+    font-size: 14px;
+    font-weight: 300;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.celebrity-bio p {
+    margin-bottom: 16px;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #666;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.back-button:hover {
+    background: #f5f4f1;
+    border-color: #1a1a1a;
+    color: #1a1a1a;
+    transform: translateY(-2px);
+}
+
+.back-button svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+}
+
+/* === FOOTER === */
+.footer {
+    background: #1a1a1a;
+    text-align: center;
+    padding: 30px 40px;
+    margin-top: auto;
+}
+
+.footer p {
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.4);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+    .header {
+        padding: 0 20px;
+    }
+    
+    .header-nav {
+        display: none;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .page-content {
+        padding: 40px 20px 60px;
+    }
+    
+    .page-title {
+        font-size: 32px;
+    }
+    
+    .celebrity-detail {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .celebrity-image-wrapper {
+        height: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    .page-title {
+        font-size: 26px;
+    }
+    
+    .celebrity-image-wrapper {
+        height: 350px;
+    }
+    
+    .celebrity-card-body {
+        padding: 20px;
+    }
+    
+    .celebrity-info {
+        padding: 10px 0;
+    }
+}
