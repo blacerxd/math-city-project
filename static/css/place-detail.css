@@ -43,6 +43,7 @@ body {
     display: flex;
     gap: 28px;
     list-style: none;
+
 }
 
 .header-nav a {
@@ -61,78 +62,7 @@ body {
     opacity: 1;
 }
 
-/* === MOBILE MENU === */
-.mobile-menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    z-index: 101;
-}
-
-.mobile-menu-btn span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: #fff;
-    margin: 5px 0;
-    transition: all 0.3s;
-}
-
-.mobile-menu-btn.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.mobile-menu-btn.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.mobile-menu-btn.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-}
-
-.mobile-nav {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.95);
-    z-index: 1000;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-}
-
-.mobile-nav.active {
-    display: flex;
-}
-
-.mobile-nav a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: 300;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.4s ease;
-}
-
-.mobile-nav.active a {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.mobile-nav.active a:nth-child(1) { transition-delay: 0.1s; }
-.mobile-nav.active a:nth-child(2) { transition-delay: 0.2s; }
-.mobile-nav.active a:nth-child(3) { transition-delay: 0.3s; }
-
-/* === PAGE CONTENT === */
+/* PAGE CONTENT */
 .page-content {
     flex: 1;
     max-width: 1200px;
@@ -145,46 +75,15 @@ body {
     margin-bottom: 50px;
 }
 
-.page-title {
-    font-size: 42px;
-    font-weight: 300;
-    color: #1a1a1a;
-    line-height: 1.2;
-    margin-bottom: 10px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeUp 0.8s ease 0.2s forwards;
-}
-
-.page-title strong {
-    font-weight: 700;
-}
-
-.page-subtitle {
-    font-size: 14px;
-    font-weight: 300;
-    color: #888;
-    opacity: 0;
-    transform: translateY(15px);
-    animation: fadeUp 0.8s ease 0.4s forwards;
-}
-
-@keyframes fadeUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* === CELEBRITY DETAIL === */
-.celebrity-detail {
+/* PlACE-DETAIL */
+.place-detail {
     display: grid;
     grid-template-columns: 450px 1fr;
     gap: 50px;
     align-items: start;
 }
 
-.celebrity-card {
+.place-card {
     background: #fff;
     border-radius: 20px;
     overflow: hidden;
@@ -194,13 +93,13 @@ body {
     animation: fadeUp 0.8s ease 0.6s forwards;
 }
 
-.celebrity-image-wrapper {
+.place-image-wrapper {
     position: relative;
     height: 520px;
     overflow: hidden;
 }
 
-.celebrity-image {
+.place-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -208,15 +107,15 @@ body {
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.celebrity-card:hover .celebrity-image {
+.place-card:hover .place-image {
     transform: scale(1.05);
 }
 
-.celebrity-card-body {
+.place-card-body {
     padding: 24px;
 }
 
-.celebrity-category {
+.place-category {
     display: inline-block;
     font-size: 10px;
     font-weight: 600;
@@ -226,7 +125,7 @@ body {
     margin-bottom: 12px;
 }
 
-.celebrity-name {
+.place-name {
     font-size: 18px;
     font-weight: 600;
     color: #1a1a1a;
@@ -234,28 +133,28 @@ body {
     line-height: 1.3;
 }
 
-.celebrity-short-desc {
+.place-short-desc {
     font-size: 13px;
     font-weight: 300;
     color: #777;
     line-height: 1.6;
 }
 
-.celebrity-info {
+.place-info {
     padding: 20px 0;
     opacity: 0;
     transform: translateY(30px);
     animation: fadeUp 0.8s ease 0.8s forwards;
 }
 
-.celebrity-years {
+.place-name-info {
     font-size: 16px;
     font-weight: 400;
     color: #666;
     margin-bottom: 24px;
 }
 
-.celebrity-bio {
+.place-bio {
     font-size: 14px;
     font-weight: 300;
     color: #555;
@@ -263,7 +162,7 @@ body {
     margin-bottom: 30px;
 }
 
-.celebrity-bio p {
+.place-bio p {
     margin-bottom: 16px;
 }
 
@@ -298,8 +197,7 @@ body {
     stroke-width: 2;
     fill: none;
 }
-
-/* === FOOTER === */
+/* FOOTER */
 .footer {
     background: #1a1a1a;
     text-align: center;
@@ -311,54 +209,4 @@ body {
     font-size: 12px;
     font-weight: 300;
     color: rgba(255,255,255,0.4);
-}
-
-/* === RESPONSIVE === */
-@media (max-width: 900px) {
-    .header {
-        padding: 0 20px;
-    }
-    
-    .header-nav {
-        display: none;
-    }
-    
-    .mobile-menu-btn {
-        display: block;
-    }
-    
-    .page-content {
-        padding: 40px 20px 60px;
-    }
-    
-    .page-title {
-        font-size: 32px;
-    }
-    
-    .celebrity-detail {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    
-    .celebrity-image-wrapper {
-        height: 400px;
-    }
-}
-
-@media (max-width: 600px) {
-    .page-title {
-        font-size: 26px;
-    }
-    
-    .celebrity-image-wrapper {
-        height: 350px;
-    }
-    
-    .celebrity-card-body {
-        padding: 20px;
-    }
-    
-    .celebrity-info {
-        padding: 10px 0;
-    }
 }
