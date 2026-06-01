@@ -75,7 +75,38 @@ body {
     margin-bottom: 50px;
 }
 
-/* PlACE-DETAIL */
+.page-title {
+    font-size: 42px;
+    font-weight: 300;
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s ease 0.2s forwards;
+}
+
+.page-title strong {
+    font-weight: 700;
+}
+
+.page-subtitle {
+    font-size: 14px;
+    font-weight: 300;
+    color: #888;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fadeUp 0.8s ease 0.4s forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === CELEBRITY DETAIL === */
 .place-detail {
     display: grid;
     grid-template-columns: 450px 1fr;
@@ -147,8 +178,8 @@ body {
     animation: fadeUp 0.8s ease 0.8s forwards;
 }
 
-.place-name-info {
-    font-size: 16px;
+.place-years {
+    font-size: 24px;
     font-weight: 400;
     color: #666;
     margin-bottom: 24px;
@@ -197,6 +228,7 @@ body {
     stroke-width: 2;
     fill: none;
 }
+
 /* FOOTER */
 .footer {
     background: #1a1a1a;
